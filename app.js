@@ -1,18 +1,18 @@
-var canvas = document.getElementById ("canvas");
-var context = canvas.getContext("2d");
-var radius= canvas.height/2;
+var canvas=document.getElementById ("canvas");
+var context=canvas.getContext("2d");
+var radius=canvas.height/2;
 
 context.translate(radius,radius);
-radius = radius*0.90;
+radius=radius*0.90;
 
-function drawFace(context,radius){
-    var grad;
+function drawFace(context,radius)
+   {var grad;
     context.beginPath();
     context.arc(0,0,radius,0,2*Math.PI);
     context.fillStyle="#191919";
     context.fill();
 
-    grad= context.createRadialGradient(0,0,radius*0.80,0,0,radius*0.70);
+    grad=context.createRadialGradient(0,0,radius*0.80,0,0,radius*0.70);
     grad.addColorStop(0,"#191919");
     grad.addColorStop(0.5,"#191919");
     grad.addColorStop(1,"#535252");
@@ -43,21 +43,22 @@ function drawNumber(context,radius){
     }
 }
 function drawTime(context,radius){
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second =  now.getSeconds();
+    var now=new Date();
+    var hour=now.getHours();
+    var minute=now.getMinutes();
+    var second=now.getSeconds();
     hour=hour%12;
-    hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60))
+    hour=(hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60))
     drawHand(context,hour,radius*0.4,radius*0.04)
 
-    minute=(minute*Math.PI/30) + (second*Math.PI/(30*60))
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60))
     drawHand(context,minute,radius*0.6,radius*0.04)
 
     second=(second*Math.PI/30)
     drawHand(context,second,radius*0.9,radius*0.01)
 }
-function drawHand(context,pos,length,width){
+function drawHand(context,pos,length,width)
+{
     context.beginPath();
     context.lineWidth=width
     context.lineCap="round"
@@ -70,7 +71,8 @@ function drawHand(context,pos,length,width){
 }
 setInterval(drawClock,1000)
 
-function drawClock(){
+function drawClock()
+{
     drawFace(context,radius);
     drawNumber(context,radius)
     drawTime(context,radius)
